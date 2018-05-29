@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue jquery</title>
+    <script src="../lib/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="layer-v3.1.1/layer/layer.js"></script>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1></h1>
+        <h2>{{message}}</h2>
+        <button onclick="testLay()">layer</button>
+        <button @click="testLay2">layer vue</button>
+        <button @click="testLay3">外部方法</button>
+
+        <el-button @click="visible = true">Button</el-button>
+        <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+
+        <el-dialog title="提示"
+            :visible.sync="dialogVisible"
+            width="30%"
+            :before-close="handleClose">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
+    </div>
+    <script>
+        function testLay(){
+            layer.msg('hhh')
+        }
+        $('h1').text('jjj')
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                visible: false,
+                dialogVisible: false
+            },
+            methods: {
+                testLay2: function(){
+                    layer.msg('ssss')
+                },
+                testLay3: function(){
+                    layer.msg('ttt')
+                    doRequest()
+                }
+            }
+        })
+    </script>
+
+    <script src="util.js"></script>
+</body>
+</html>

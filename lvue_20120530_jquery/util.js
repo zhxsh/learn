@@ -1,0 +1,3 @@
+function doRequest(){
+    alert('do')
+}
